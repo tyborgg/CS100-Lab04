@@ -34,4 +34,12 @@ TEST(OpTest, OpStringifyZeros)
 	EXPECT_EQ("0.000000",test->stringify());
 }
 
+TEST(OpTest, OpStringifyNegative)
+{
+        Op* test = new Op(-3);
+        EXPECT_EQ("-3.000000",test->stringify());
+}
+
+
+
 #endif //__OP_TEST_HPP__

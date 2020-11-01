@@ -7,6 +7,10 @@
 #include "base.hpp"
 #include "op.hpp"
 #include "pow.hpp"
+#include "RandMock.hpp"
+#include "MultMock.hpp"
+#include "AddMock.hpp"
+#include "DivMock.hpp"
 
 TEST(SubTest, SubEvaluateNonZero)
 {
@@ -67,5 +71,40 @@ TEST(SubTest, SubStringifyPowAndOp)
 }
 
 
-#endif //__SUB_TEST_HPP__
+TEST(SubTest, SubStringifyRandAndOp)
+{
+        Base* Op1 = new Op(3);
+        Base* Rand2 = new RandMock();
+        Base* test = new Sub(Rand2,Op1);
+        EXPECT_EQ("11.000000 - 3.000000",test->stringify());
+}
 
+
+TEST(SubTest, SubStringifyMultAndOp)
+{
+        Base* Op1 = new Op(3);
+        Base* Mult2 = new MultMock;
+        Base* test = new Sub(Mult2,Op1);
+        EXPECT_EQ("3.000000 * 4.000000 - 3.000000",test->stringify());
+}
+
+
+TEST(SubTest, SubStringifyAddAndOp)
+{
+        Base* Op1 = new Op(3);
+        Base* Add2 = new AddMock;
+        Base* test = new Sub(Add2,Op1);
+        EXPECT_EQ("6.000000 + 3.000000 - 3.000000",test->stringify());
+}
+
+
+TEST(SubTest, SubStringifyDivAndOp)
+{
+        Base* Op1 = new Op(7);
+        Base* Div2 = new DivMock;
+        Base* test = new Sub(Div2,Op1);
+        EXPECT_EQ("8.000000 / 4.000000 - 7.000000",test->stringify());
+}
+
+
+#endif 
