@@ -9,18 +9,20 @@ using namespace std;
 class Mult : public Base {
     public:
 	double product;
-	double* num1;
-	double* num2;
-        Mult(double* op1, double* op2) : Base() { 
+	Base* num1;
+	Base* num2;
+	string str1;
+        string str2;
+        Mult(Base* op1, Base* op2) : Base() { 
 		this->num1 = op1;
 		this->num2 = op2;
-		this->product = *op1 * *op2;
+		this->str1 = num1->stringify();
+		this->str2 = num2->stringify();
+		this->product = ((num1->evaluate()) * (num2->evaluate()));
 	}
         virtual double evaluate() { return this->product; }
-        virtual std::string stringify() {
-		string strNum1 = to_string(*num1);
-		string strNum2 = to_string(*num2);
-		return strNum1 + " * " + strNum2;
+        virtual string stringify() {
+		return this->str1 + " * " + this->str2;
 	}
 };
 
