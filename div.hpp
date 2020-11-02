@@ -1,36 +1,37 @@
 #ifndef __DIV_HPP__
-#define __DIV_HPP__
+#define __DVI_HPP__
 
-#include <iostream>
-#include <string>
 #include "base.hpp"
+#include <string>
 
 using namespace std;
 
 class Div : public Base {
     public:
         double product;
-        double* num1;
-        double* num2;
-        Div(double* op1, double* op2) : Base() {
+        Base* num1;
+        Base* num;
+        string str1;
+        string str2;
+	string out;
+        Div(Base* op1, Base* op2) : Base() {
                 this->num1 = op1;
-                this->num2 = op2;
-		if(*num1 == 0){
-			this->product = 0;
-		}
-		else if(*num2 == 0){
+                this->num = op2;
+                this->str1 = num1->stringify();
+                this->str2 = num->stringify();
+		
+		if(num->evaluate() == 0){
 			this->product = -1;
-			cout << "Error" << endl;
+			this->out = "Error";
 		}
 		else{
-                	this->product = *op1 / *op2;
+                	this->product = ((num1->evaluate()) / (num->evaluate()));
+			this->out = this->str1 + " / " + this->str2;
 		}
         }
         virtual double evaluate() { return this->product; }
         virtual string stringify() {
-                string strNum1 = to_string(*num1);
-                string strNum2 = to_string(*num2);
-                return strNum1 + " / " + strNum2;
+                return out;
         }
 };
 
